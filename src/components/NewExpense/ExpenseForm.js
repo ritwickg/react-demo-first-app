@@ -3,36 +3,51 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
   // States
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [epxenseDate, setExpenseDate] = useState("");
+  //   const [title, setTitle] = useState("");
+  //   const [amount, setAmount] = useState("");
+  //   const [epxenseDate, setExpenseDate] = useState("");
+  const [userInput, setUserInput] = useState({
+    title: "",
+    expenseAmount: "",
+    expenseDate: "",
+  });
   // Event Handelers
   const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        title: event.target.value,
+      };
+    });
   };
 
   const handleAmountChange = (event) => {
-    setAmount(event.target.value);
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        expenseAmount: event.target.value,
+      };
+    });
   };
 
   const handleDateChange = (event) => {
-    setExpenseDate(event.target.value);
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        expenseDate: event.target.value,
+      };
+    });
   };
   return (
     <form>
       <div className="new-expense__controls">
         <div className="new-expense_control">
           <label>Title</label>
-          <input type="text" onChange={handleTitleChange} value={title}></input>
+          <input type="text" onChange={handleTitleChange}></input>
         </div>
         <div className="new-expense_control">
           <label>Amount</label>
-          <input
-            type="number"
-            min={0.01}
-            onChange={handleAmountChange}
-            value={amount}
-          ></input>
+          <input type="number" min={0.01} onChange={handleAmountChange}></input>
         </div>
         <div className="new-expense_control">
           <label>Date</label>
